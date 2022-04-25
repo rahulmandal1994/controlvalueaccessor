@@ -1,0 +1,13 @@
+<hello name="{{ name }}"></hello>
+<form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+  <h4>{{registrationForm.get('name').value}}</h4>
+  <h4>{{registrationForm.get('name').touched}}</h4>
+  <h4>{{registrationForm.get('name').dirty}}</h4>
+  <h4>{{registrationForm.get('name').hasError('required')}}</h4>
+
+  <app-custom-input
+    formControlName="name"
+    name="externalVal"
+  ></app-custom-input>
+  external: {{ external }}
+</form>
