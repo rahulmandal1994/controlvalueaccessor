@@ -13,32 +13,10 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
   ],
 })
 export class CustomInputComponent implements ControlValueAccessor {
-  // writeValue(obj: any): void {
-  // throw new Error('Method not implemented.');
-  // }
-  // registerOnChange(fn: any): void {
-  // throw new Error('Method not implemented.');
-  // }
-  // registerOnTouched(fn: any): void {
-  // throw new Error('Method not implemented.');
-  // }
-  // setDisabledState?(isDisabled: boolean): void {
-  // throw new Error('Method not implemented.');
-  // }
-  onChange(event) {
-    console.log(event.target);
-    return event.target.value;
-  }
-  onTouch: any = () => {};
+  onChange: (value?: any) => void;
+  onTouch: () => void;
   value: any = '';
   isDisabled: boolean;
-  /*val = ''; // this is the updated value that the class accesses
-  set value(val) {
-    // this value is updated by programmatic changes if( val !== undefined && this.val !== val){
-    this.val = val;
-    this.onChange(val);
-    this.onTouch(val);
-  }*/
   // this method sets the value programmatically
   writeValue(value: any) {
     this.value = value;
@@ -54,5 +32,10 @@ export class CustomInputComponent implements ControlValueAccessor {
   }
   setDisabledState?(isDisabled: boolean): void {
     this.isDisabled = isDisabled;
+  }
+  onInput($event) {
+    if (this.onChange) {
+      this.onChange($event.target.value);
+    }
   }
 }
