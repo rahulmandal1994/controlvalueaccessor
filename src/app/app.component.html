@@ -3,7 +3,7 @@
   <h4>{{ registrationForm.get('name').value }}</h4>
   <h4>{{ registrationForm.get('name').touched }}</h4>
   <h4>{{ registrationForm.get('name').dirty }}</h4>
-  <h4>{{ registrationForm.get('name').hasError('required') }}</h4>
-  <app-custom-input formControlName="name"></app-custom-input>
+  <h4>{{registrationForm.get('name').hasError('required') }}</h4>
+  <app-custom-input formControlName="name" [variant]="variant"></app-custom-input>
   <button type="submit">click</button>
 </form>

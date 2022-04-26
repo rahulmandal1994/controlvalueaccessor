@@ -13,6 +13,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
   ],
 })
 export class CustomInputComponent implements ControlValueAccessor {
+  @Input() variant = '';
   onChange: (value?: any) => void;
   onTouch: () => void;
   value: any = '';
@@ -20,7 +21,6 @@ export class CustomInputComponent implements ControlValueAccessor {
   // this method sets the value programmatically
   writeValue(value: any) {
     this.value = value;
-    console.log('value=', this.value);
   }
   // upon UI element value changes, this method gets triggered
   registerOnChange(fn: any) {
@@ -37,5 +37,8 @@ export class CustomInputComponent implements ControlValueAccessor {
     if (this.onChange) {
       this.onChange($event.target.value);
     }
+  }
+  ngAfterViewInit() {
+    console.log("varient=",this.variant)
   }
 }

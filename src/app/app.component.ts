@@ -9,10 +9,10 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 export class AppComponent {
   name = 'Angular ' + VERSION.major;
   external = '';
- 
+  variant='variant1'
   constructor(public fb: FormBuilder) {}
   registrationForm = this.fb.group({
-    name: [{ value: 'test', disabled: false }, Validators.required],
+    name: [{ value: '', disabled: false }, Validators.required],
   });
   /*buildForm() {
     this.registrationForm = new FormGroup({
@@ -21,6 +21,6 @@ export class AppComponent {
     })
   }*/
   onSubmit() {
-    console.log(this.registrationForm.valid)
+    console.log("aa=",this.registrationForm.get('name').hasError('required'))
   }
 }
