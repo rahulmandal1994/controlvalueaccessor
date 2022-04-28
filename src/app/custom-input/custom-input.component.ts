@@ -1,5 +1,6 @@
-import { Component, forwardRef, HostBinding, Input } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { Component, Injector, OnInit, Input,  forwardRef} from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR, NgControl,  AbstractControl, FormControl } from '@angular/forms';
+
 @Component({
   selector: 'app-custom-input',
   templateUrl: './custom-input.component.html',
@@ -12,12 +13,24 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
     },
   ],
 })
-export class CustomInputComponent implements ControlValueAccessor {
+export class CustomInputComponent implements OnInit,ControlValueAccessor {
   @Input() variant = '';
   onChange: (value?: any) => void;
   onTouch: () => void;
   value: any = '';
   isDisabled: boolean;
+  _control: NgControl;
+
+  constructor(private injector: Injector) {
+  }
+  get control(){
+    return this._control.control as FormControl
+ }
+  ngOnInit() {
+    this._control = this.injector.get(NgControl);
+    //console.log("registrationForm",this._control)
+   //this.control = this.abstractcontrol as NgControl;
+  }
   // this method sets the value programmatically
   writeValue(value: any) {
     this.value = value;

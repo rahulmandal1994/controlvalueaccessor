@@ -1,1 +1,2 @@
-<input [value]="value" (input)="onInput($event)" [disabled]="isDisabled"/>
+ <h4>{{ 'aa'+control.hasError('required') }}</h4>
+<input  [formControl]="control" [value]="value" (input)="onInput($event)" [disabled]="isDisabled"/>

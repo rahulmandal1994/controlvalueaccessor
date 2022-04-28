@@ -21,6 +21,6 @@ export class AppComponent {
     })
   }*/
   onSubmit() {
-    console.log("aa=",this.registrationForm.get('name').hasError('required'))
+    console.log("aa=",this.registrationForm.valid)
   }
 }
